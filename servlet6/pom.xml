@@ -12,6 +12,13 @@
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>7.1.6.v20100715</version>
+				<configuration>
+					<scanIntervalSeconds>1</scanIntervalSeconds>
+					<scanTargets>
+						<scanTarget>module-name/target/classes</scanTarget>
+						<scanTarget>module-name2/target/classes</scanTarget>
+					</scanTargets>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
