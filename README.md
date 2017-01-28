@@ -24,6 +24,9 @@ To start up server:
 	mvn jetty:run 
 
 If everything is ok you should see a funny message by clicking the following [route](http://localhost:8080/try/me) 
+You can try bootstrap integration by hitting [here](http://localhost:8080/try/bootstrap)
+
+
 
 servlet6
 -------
