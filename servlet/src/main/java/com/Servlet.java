@@ -32,7 +32,7 @@ public class Servlet extends HttpServlet {
 			    "  		<div class='row'>                                                                                                                        " +
 			    "  			<div class='col-md-6 col-md-offset-3'>                                                                                               " +
 			    "  				<h1 class='page-header text-center'>Contact Form Example</h1>                                                                    " +
-			    "				<form class='form-horizontal' role='form' method='post' action='index.php'>                                                      " +
+			    "				<form class='form-horizontal' role='form' method='post' action=''>                                                      		 " +
 			    "					<div class='form-group'>                                                                                                     " +
 			    "						<label for='name' class='col-sm-2 control-label'>Name</label>                                                            " +
 			    "						<div class='col-sm-10'>                                                                                                  " +
@@ -42,7 +42,7 @@ public class Servlet extends HttpServlet {
 			    "					<div class='form-group'>                                                                                                     " +
 			    "						<label for='email' class='col-sm-2 control-label'>Email</label>                                                          " +
 			    "						<div class='col-sm-10'>                                                                                                  " +
-		        "							<input type='email' class='form-control' id='email' name='email' placeholder='example@domain.com' value='Lastname'>  " +
+		        "							<input type='email' class='form-control' id='email' name='email' placeholder='example@domain.com' value='Mail'>      " +
 			    "						</div>                                                                                                                   " +
 			    "					</div>                                                                                                                       " +
 			    "					<div class='form-group'>                                                                                                     " +

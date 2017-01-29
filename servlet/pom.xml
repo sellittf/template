@@ -15,8 +15,7 @@
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 					<scanTargets>
-						<scanTarget>module-name/target/classes</scanTarget>
-						<scanTarget>module-name2/target/classes</scanTarget>
+						<scanTarget>target/classes</scanTarget>
 					</scanTargets>
 				</configuration>
 			</plugin>
