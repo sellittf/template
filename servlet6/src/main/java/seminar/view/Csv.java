@@ -1,7 +1,7 @@
-package ch.gmtech.school.seminar.view;
+package seminar.view;
 
-import ch.gmtech.school.seminar.Seminar;
-import ch.gmtech.school.seminar.Student;
+import seminar.model.Seminar;
+import seminar.model.Student;
 
 public class Csv extends OutputFormat {
 

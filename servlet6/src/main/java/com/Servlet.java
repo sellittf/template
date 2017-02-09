@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ch.gmtech.school.seminar.Seminar;
-import ch.gmtech.school.seminar.SeminarList;
-import ch.gmtech.school.seminar.Student;
-import ch.gmtech.school.seminar.view.*;
+import seminar.model.Seminar;
+import seminar.model.SeminarList;
+import seminar.model.Student;
+import seminar.view.*;
 
 public class Servlet extends HttpServlet {
 
@@ -32,13 +32,32 @@ public class Servlet extends HttpServlet {
 			downloadResponse(resp, content, "course.csv");			
 		}else if(requestUri.equals("/course/raw")){
 			content = course("raw");
+		}else if(requestUri.equals("/course/new/html")){
+			Html view = new Html();			
+			content = view.newCourse();
 		}else{
 			content = notFound("Page");
 		}
 		
 		output.write(content);
 	}
-	
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String requestUri = req.getRequestURI();
+		PrintWriter output = resp.getWriter();
+		String content = "";
+		
+		if(requestUri.equals("/course/new/html")){
+			content = "creating new course here";
+		}else{
+			content = notFound("Page");
+		}
+		
+		output.write(content);
+	}
+
 	private String tryMe(){
 		return "<h1>you did it!</h1>";
 	}

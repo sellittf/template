@@ -1,6 +1,6 @@
-package ch.gmtech.school.seminar.view;
+package seminar.view;
 
-import ch.gmtech.school.seminar.Seminar;
+import seminar.model.Seminar;
 
 public abstract class OutputFormat {
 

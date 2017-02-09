@@ -1,4 +1,4 @@
-package ch.gmtech.school.seminar;
+package seminar.model;
 
 public class Enrollment {
 	public Student _student;

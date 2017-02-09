@@ -1,4 +1,4 @@
-package ch.gmtech.school.seminar;
+package seminar.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ch.gmtech.school.seminar;
+package seminar.model;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;

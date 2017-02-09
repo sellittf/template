@@ -1,24 +1,37 @@
-package com;
+package seminar.view;
 
-import java.io.IOException;
+import seminar.model.Seminar;
+import seminar.model.Student;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-public class Servlet extends HttpServlet {
+public class Html extends OutputFormat {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		if(req.getRequestURI().equals("/try/me")){
-			resp.getWriter().write("<h1>you did it!</h1>");
+	public String render(Seminar seminar) {
+		String html_head = "<head><title>" + seminar.getName() + "</title></head>";
+
+		String html_body = "<body>" +
+							"<div>" + seminar.getName() + ":</div>" +
+							"<ul>" +
+					          "<li>" + seminar.getDescription() + "</li>" +
+					          "<li>" + seminar.getLocation() + "</li>" +
+					          "<li>" + seminar.getSeatsLeft() + "</li>" +
+							"</ul>" +
+					        "<div>partecipanti:</div>" +
+							"<ul>";
+
+		for(Student student : seminar.getStudentList()){
+			html_body += "<li>" + student.getFullName() + "</li>";
 		}
-		
-		if(req.getRequestURI().equals("/try/bootstrap")){
-			resp.getWriter().write(
-			    "<!DOCTYPE html>                                                                                                                                 " +
+
+		html_body += "<body>";
+
+		return "<html>" + html_head + html_body + "</html>";
+
+	}
+
+	
+	public String newCourse(){
+		String html = "<!DOCTYPE html>                                                                                                                                 " +
 			    "<html lang='en'>                                                                                                                                " +
 			    "  <head>                                                                                                                                        " +
 			    "    <meta charset='utf-8'>                                                                                                                      " +
@@ -31,18 +44,18 @@ public class Servlet extends HttpServlet {
 			    "  	<div class='container'>                                                                                                                      " +
 			    "  		<div class='row'>                                                                                                                        " +
 			    "  			<div class='col-md-6 col-md-offset-3'>                                                                                               " +
-			    "  				<h1 class='page-header text-center'>Contact Form Example</h1>                                                                    " +
+			    "  				<h1 class='page-header text-center'>New Course</h1>                                                                    " +
 			    "				<form class='form-horizontal' role='form' method='post' action=''>                                                      		 " +
 			    "					<div class='form-group'>                                                                                                     " +
 			    "						<label for='name' class='col-sm-2 control-label'>Name</label>                                                            " +
 			    "						<div class='col-sm-10'>                                                                                                  " +
-			    "							<input type='text' class='form-control' id='name' name='name' placeholder='First & Last Name' value='Name'>          " +
+			    "							<input type='text' class='form-control' id='name' name='name' placeholder='Course name'>          " +
 			    "						</div>                                                                                                                   " +
 			    "					</div>                                                                                                                       " +
 			    "					<div class='form-group'>                                                                                                     " +
-			    "						<label for='email' class='col-sm-2 control-label'>Email</label>                                                          " +
+			    "						<label for='start_date' class='col-sm-2 control-label'>Start date</label>                                                          " +
 			    "						<div class='col-sm-10'>                                                                                                  " +
-		        "							<input type='email' class='form-control' id='email' name='email' placeholder='example@domain.com' value='Mail'>      " +
+		        "							<input type='date' class='form-control' id='start_date' name='startDate' placeholder='Start date'>      " +
 			    "						</div>                                                                                                                   " +
 			    "					</div>                                                                                                                       " +
 			    "					<div class='form-group'>                                                                                                     " +
@@ -56,8 +69,8 @@ public class Servlet extends HttpServlet {
 			    "	</div>                                                                                                                                       " +
 			    "    <script src='/js/jquery.min.js'></script>                                                   												 " +
 			    "    <script src='/js/bootstrap.min.js'></script>                                                 												 " +
-			    "</body> "
-		    );
-		}
+			    "</body> ";
+		return html;
+		
 	}
 }

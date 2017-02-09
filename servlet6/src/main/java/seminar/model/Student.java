@@ -1,4 +1,4 @@
-package ch.gmtech.school.seminar;
+package seminar.model;
 
 public class Student {
 
