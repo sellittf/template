@@ -20,12 +20,16 @@ public final class SeminarList {
     }
 
 	private static void buildSeminars() {
-		Seminar _seminar = new Seminar("Online Marketing", "Quick introduction", "Aula magna", 15);
+		Seminar aSeminar = new Seminar("Online Marketing", "Quick introduction", "Aula magna", 15);
 		Student student1 = new Student("Pinco", "Pallino", "uno qualunque");
-		_seminar.addEnrollment(student1, "marketing junior operator");
+		aSeminar.addEnrollment(student1, "marketing junior operator");
 		Student student2 = new Student("Jorge", "Camacho", "olé");
-		_seminar.addEnrollment(student2, "marketing advisor");		
+		aSeminar.addEnrollment(student2, "marketing advisor");		
 		
-		_seminars.add(_seminar);
-	}	
+		storeSeminar(aSeminar);
+	}
+	
+	public static void storeSeminar(Seminar aSeminar){
+		_seminars.add(aSeminar);
+	}
 }

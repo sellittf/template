@@ -1,7 +1,6 @@
 package com;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -9,15 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import seminar.model.Seminar;
-import seminar.model.SeminarList;
-import seminar.model.Student;
+import seminar.model.Course;
+import seminar.model.CourseList;
 import seminar.view.*;
 
 public class Servlet extends HttpServlet {
 
+	HttpServletResponse _resp;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		_resp = resp;
 		
 		String requestUri = req.getRequestURI();
 		PrintWriter output = resp.getWriter();
@@ -25,14 +26,15 @@ public class Servlet extends HttpServlet {
 			
 		if(requestUri.equals("/try/me")){
 			content = tryMe();
-		}else if(requestUri.equals("/course/html")){
-			content = course("html");
-		}else if(requestUri.equals("/course/csv")){
-			content = course("csv");		
-			downloadResponse(resp, content, "course.csv");			
-		}else if(requestUri.equals("/course/raw")){
-			content = course("raw");
-		}else if(requestUri.equals("/course/new/html")){
+		}else if(requestUri.equals("/course")){
+			String idParam = req.getParameter("id");
+			if(idParam == null){
+				Html view = new Html();		
+				content = view.render(CourseList.getCourses());
+			}else{
+				content = course(Integer.valueOf(idParam));
+			}
+		}else if(requestUri.equals("/course/create")){
 			Html view = new Html();			
 			content = view.newCourse();
 		}else{
@@ -44,13 +46,15 @@ public class Servlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		_resp = resp;
 		
 		String requestUri = req.getRequestURI();
 		PrintWriter output = resp.getWriter();
 		String content = "";
 		
-		if(requestUri.equals("/course/new/html")){
-			content = "creating new course here";
+		if(requestUri.equals("/course/create")){
+			CourseList.storeCourse(req.getParameter("name"), req.getParameter("startDate"));
+			resp.sendRedirect("/course");
 		}else{
 			content = notFound("Page");
 		}
@@ -63,39 +67,19 @@ public class Servlet extends HttpServlet {
 	}
 
 	private String notFound(String subject){
+		_resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		return "<h1>" + subject +" not found!</h1>";
 	}
 	
-	private String course(String format){
-		Seminar _seminar = SeminarList.getSeminar(1);
-		if(_seminar == null) return notFound("Seminar");
+	private String course(int id){
+		Course _course = CourseList.getCourse(id);
+		if(_course == null) return notFound("Seminar");
 		
 		OutputFormat output;
-		
-		if(format.equals("html")){
-			output = new Html();
-		}else if(format.equals("csv")){
-			output = new Csv();
-		}else if(format.equals("raw")){
-			output = new Raw();
-		}else{
-			return notFound("Page");
-		}
 
-		return output.render(_seminar);					
+		output = new Html();
+
+		return output.render(_course);					
 	}
 
-	private void downloadResponse(HttpServletResponse response, String content, String filename) {
-	    response.setContentType("text/csv");
-	    response.setHeader("Content-Disposition", "attachment; filename=\""+ filename +"\"");
-	    try {
-	        OutputStream outputStream = response.getOutputStream();
-	        String outputResult = content;
-	        outputStream.write(outputResult.getBytes());
-	        outputStream.flush();
-	        outputStream.close();
-	    } catch(Exception e) {
-	        System.out.println(e.toString());
-	    }
-	}
 }

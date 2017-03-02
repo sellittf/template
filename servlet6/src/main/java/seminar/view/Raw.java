@@ -1,5 +1,8 @@
 package seminar.view;
 
+import java.util.List;
+
+import seminar.model.Course;
 import seminar.model.Seminar;
 import seminar.model.Student;
 
@@ -33,6 +36,18 @@ public class Raw extends OutputFormat {
 		}
 
 		return s;
+	}
+
+	@Override
+	public String render(List<Course> courses) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String render(Course course) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
