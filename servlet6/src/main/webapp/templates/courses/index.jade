@@ -1,0 +1,19 @@
+extends ../layouts/application
+
+block content
+  .row
+    .col-md-6.col-md-offset-3
+      .list-group
+        for course in courses
+          a.list-group-item(href='/course?id=#{course.number}')
+            .row
+              .col-sm-12
+                h2= course.name
+            .row
+              .col-sm-6
+                h4= course.location
+              .col-md-6.text-right
+                = course.startDate
+                p #{course.seats} seats
+
+      a.btn.btn-primary(href='/course/create') Create course

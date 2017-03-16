@@ -35,5 +35,16 @@
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 		</dependency>
+		<dependency>
+		  <groupId>de.neuland-bfi</groupId>
+		  <artifactId>jade4j</artifactId>
+		  <version>1.2.5</version>
+		</dependency>
+    <dependency>
+      <groupId>net.sourceforge.htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+      <version>2.24</version>
+      <scope>test</scope>
+    </dependency>
 	</dependencies>
 </project>

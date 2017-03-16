@@ -1,0 +1,25 @@
+extends ../layouts/application
+
+block append vars
+  - var pageTitle = "Course" 
+
+block content
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-info
+        .panel-heading
+          .row
+            .col-sm-12
+              h2= course.name
+          .row
+            .col-sm-6
+              h4= course.location
+            .col-md-6.text-right
+              = course.startDate
+              p #{course.seats} seats
+        .panel-body
+          p= course.description
+
+      a.btn.btn-default(href='/course')
+        span.glyphicon.glyphicon-backward
+        |  Back to courses
